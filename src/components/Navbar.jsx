@@ -38,14 +38,14 @@ export default function Navbar() {
       const element = document.getElementById(targetId);
       if (element) {
         setTimeout(() => {
-          const headerOffset = 85;
+          const headerOffset = 80;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
           window.scrollTo({
             top: offsetPosition,
             behavior: 'smooth'
           });
-        }, 50);
+        }, 30);
       }
     }
   };
@@ -72,15 +72,15 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Sticky Navbar */}
+      {/* Main Sticky Navbar Container */}
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
+        className={`sticky top-0 z-50 transition-colors duration-200 ${
           scrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200/80'
-            : 'bg-white/85 backdrop-blur-sm border-b border-slate-200/50'
+            ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200'
+            : 'bg-white/90 border-b border-slate-200/60'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 relative">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <a
@@ -154,15 +154,15 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Drawer */}
+        {/* Optimized GPU Hardware-Accelerated Mobile Dropdown Drawer */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.25 }}
-              className="lg:hidden bg-white border-b border-slate-200 overflow-hidden shadow-2xl"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.16, ease: "easeOut" }}
+              className="lg:hidden absolute top-full left-0 right-0 w-full bg-white border-b border-slate-200 shadow-2xl z-50 max-h-[82vh] overflow-y-auto"
             >
               <div className="px-4 pt-2 pb-6 space-y-1.5 max-w-7xl mx-auto">
                 {navLinks.map((link) => (
