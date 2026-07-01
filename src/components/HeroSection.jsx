@@ -107,7 +107,15 @@ export default function HeroSection() {
             >
               <a
                 href="#plans"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-bold text-lg text-white bg-gradient-to-r from-red-600 via-red-700 to-red-800 rounded-2xl shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all group duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('plans');
+                  if (el) {
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - 85;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }}
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-bold text-lg text-white bg-gradient-to-r from-red-600 via-red-700 to-red-800 rounded-2xl shadow-xl shadow-red-600/30 hover:shadow-red-600/50 hover:scale-[1.02] active:scale-[0.98] transition-all group duration-200 cursor-pointer touch-manipulation"
               >
                 <span>Join Now</span>
                 <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -115,7 +123,15 @@ export default function HeroSection() {
 
               <a
                 href="#contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-bold text-lg text-slate-800 bg-white border-2 border-slate-200 rounded-2xl shadow-sm hover:border-red-600 hover:text-red-600 hover:bg-red-50/50 transition-all duration-200"
+                onClick={(e) => {
+                  e.preventDefault();
+                  const el = document.getElementById('contact');
+                  if (el) {
+                    const y = el.getBoundingClientRect().top + window.pageYOffset - 85;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                  }
+                }}
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 font-bold text-lg text-slate-800 bg-white border-2 border-slate-200 rounded-2xl shadow-sm hover:border-red-600 hover:text-red-600 hover:bg-red-50/50 transition-all duration-200 cursor-pointer touch-manipulation"
               >
                 <span>Contact Us</span>
               </a>
@@ -166,7 +182,7 @@ export default function HeroSection() {
             <div className="relative mx-auto max-w-md lg:max-w-none">
 
               {/* Decorative Gold & Red Border Glow */}
-              <div className="absolute -inset-3 bg-gradient-to-tr from-red-600 via-amber-500 to-red-600 rounded-3xl opacity-30 blur-xl animate-pulse-slow" />
+              <div className="absolute -inset-3 bg-gradient-to-tr from-red-600 via-amber-500 to-red-600 rounded-3xl opacity-30 blur-xl animate-pulse-slow pointer-events-none" />
 
               <div className="relative rounded-3xl overflow-hidden border-4 border-white shadow-2xl bg-slate-900 h-[450px] sm:h-[520px]">
 
@@ -185,7 +201,7 @@ export default function HeroSection() {
                       className="w-full h-full object-cover"
                     />
                     {/* Overlay Gradient for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
 
                     <div className="absolute bottom-14 left-6 right-6 text-white z-10">
                       <span className="px-3 py-1 bg-red-600 font-bold text-xs rounded-full uppercase tracking-wider inline-block">

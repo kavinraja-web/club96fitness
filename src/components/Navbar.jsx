@@ -14,7 +14,7 @@ export default function Navbar() {
         setScrolled(false);
       }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -28,6 +28,27 @@ export default function Navbar() {
     { name: 'Reviews', href: '#reviews' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  // Helper for smooth navigation on mobile & desktop
+  const handleNavClick = (e, href) => {
+    e.preventDefault();
+    setIsOpen(false);
+    if (href.startsWith('#')) {
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        setTimeout(() => {
+          const headerOffset = 85;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }, 50);
+      }
+    }
+  };
 
   return (
     <>
@@ -55,14 +76,18 @@ export default function Navbar() {
       <header
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-white/90 backdrop-blur-md shadow-md border-b border-slate-200/80 py-3'
-            : 'bg-white/70 backdrop-blur-sm border-b border-slate-200/50 py-4'
+            ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-slate-200/80'
+            : 'bg-white/85 backdrop-blur-sm border-b border-slate-200/50'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <a href="#home" className="flex items-center gap-3 group">
+            <a
+              href="#home"
+              onClick={(e) => handleNavClick(e, '#home')}
+              className="flex items-center gap-3 group touch-manipulation cursor-pointer"
+            >
               <div className="relative">
                 <img
                   src="/assets/club96logo.jpeg"
@@ -89,7 +114,8 @@ export default function Navbar() {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-red-600 hover:bg-red-50/70 rounded-lg transition-all duration-200"
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-red-600 hover:bg-red-50/70 rounded-lg transition-all duration-200 cursor-pointer"
                 >
                   {link.name}
                 </a>
@@ -100,23 +126,26 @@ export default function Navbar() {
             <div className="hidden sm:flex items-center gap-3">
               <a
                 href="#plans"
-                className="relative inline-flex items-center justify-center px-6 py-2.5 overflow-hidden font-bold text-white rounded-xl shadow-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-red-500/25"
+                onClick={(e) => handleNavClick(e, '#plans')}
+                className="relative inline-flex items-center justify-center px-6 py-2.5 overflow-hidden font-bold text-white rounded-xl shadow-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 transition-all transform hover:-translate-y-0.5 active:translate-y-0 shadow-red-500/25 cursor-pointer touch-manipulation"
               >
                 <span>Join Now</span>
               </a>
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="flex lg:hidden items-center gap-2">
+            <div className="flex lg:hidden items-center gap-2.5">
               <a
                 href="#plans"
-                className="sm:hidden px-4 py-2 text-xs font-bold text-white bg-red-600 rounded-lg shadow"
+                onClick={(e) => handleNavClick(e, '#plans')}
+                className="px-3.5 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg shadow cursor-pointer touch-manipulation active:scale-95 transition-transform"
               >
                 Join Now
               </a>
               <button
+                type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="p-2.5 rounded-xl text-slate-700 hover:text-red-600 hover:bg-slate-100 transition-colors focus:outline-none"
+                className="p-2.5 rounded-xl text-slate-800 hover:text-red-600 bg-slate-100 hover:bg-slate-200 transition-all focus:outline-none cursor-pointer touch-manipulation active:scale-95"
                 aria-label="Toggle Navigation Menu"
               >
                 {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -133,21 +162,28 @@ export default function Navbar() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.25 }}
-              className="lg:hidden bg-white/95 backdrop-blur-lg border-b border-slate-200 overflow-hidden shadow-xl"
+              className="lg:hidden bg-white border-b border-slate-200 overflow-hidden shadow-2xl"
             >
-              <div className="px-4 pt-3 pb-6 space-y-2 max-w-7xl mx-auto">
+              <div className="px-4 pt-2 pb-6 space-y-1.5 max-w-7xl mx-auto">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="block px-4 py-3 text-base font-semibold text-slate-800 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors"
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="block px-4 py-3.5 text-base font-bold text-slate-800 hover:text-red-600 hover:bg-red-50 rounded-xl transition-colors cursor-pointer touch-manipulation active:bg-red-100"
                   >
                     {link.name}
                   </a>
                 ))}
-                <div className="pt-4 border-t border-slate-100 flex flex-col gap-3">
-                  <div className="flex items-center gap-2 px-4 text-xs font-bold text-amber-600">
+                <div className="pt-4 mt-2 border-t border-slate-100 flex flex-col gap-3">
+                  <a
+                    href="tel:+919962224307"
+                    className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-bold text-white bg-slate-900 rounded-xl shadow cursor-pointer touch-manipulation"
+                  >
+                    <Phone className="w-4 h-4 text-red-500" />
+                    <span>Call Gym Directly: +91 99622 24307</span>
+                  </a>
+                  <div className="flex items-center justify-center gap-2 px-4 text-xs font-bold text-amber-600">
                     <Star className="w-4 h-4 fill-amber-500 text-amber-500" />
                     <span>Rated 4.9 ★★★★★ on Google Reviews</span>
                   </div>
