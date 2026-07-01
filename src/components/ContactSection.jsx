@@ -106,7 +106,7 @@ export default function ContactSection() {
             {/* Social Buttons */}
             <div className="grid grid-cols-2 gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-4 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white rounded-2xl shadow-md font-bold flex items-center justify-center gap-2 hover:opacity-95 transition-opacity text-sm"

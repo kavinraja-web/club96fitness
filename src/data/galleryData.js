@@ -18,7 +18,7 @@ export const galleryData = [
     src: "https://videos.pexels.com/video-files/5319759/5319759-uhd_2560_1440_25fps.mp4",
     thumbnail: "/assets/club966.jpeg",
     duration: "0:45",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Watch our champion athletes push limits with high-intensity strength training at Club 96 Fitness."
   },
   {
@@ -28,7 +28,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club961.png",
     thumbnail: "/assets/club961.png",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Mr. Tamil Nadu competition lineup and trophy winning moment."
   },
   {
@@ -38,7 +38,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club962.jpeg",
     thumbnail: "/assets/club962.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "State-of-the-art imported fitness machines and dedicated functional area."
   },
   {
@@ -48,7 +48,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club9622.jpeg",
     thumbnail: "/assets/club9622.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Incredible conditioning achieved under personalized nutrition and coaching."
   },
   {
@@ -58,7 +58,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club963.jpeg",
     thumbnail: "/assets/club963.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Dedicated heavy dumbbell and powerlifting racks for serious lifters."
   },
   {
@@ -68,7 +68,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club964.jpeg",
     thumbnail: "/assets/club964.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Our certified master trainers guiding members through perfect lifting biomechanics."
   },
   {
@@ -78,7 +78,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club965.jpeg",
     thumbnail: "/assets/club965.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Celebrating Kovilpatti champions with grand awards and honors."
   },
   {
@@ -88,7 +88,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club966.jpeg",
     thumbnail: "/assets/club966.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Peak physical conditioning ready for South India stage competition."
   },
   {
@@ -98,7 +98,7 @@ export const galleryData = [
     category: "Photos",
     src: "/assets/club96img.jpeg",
     thumbnail: "/assets/club96img.jpeg",
-    instagramUrl: "https://instagram.com",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Spacious, hygienic, and air-conditioned workout environment in Kovilpatti."
   }
 ];

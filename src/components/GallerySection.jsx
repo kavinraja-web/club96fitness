@@ -89,7 +89,7 @@ export default function GallerySection() {
           {/* Action Button */}
           <div className="flex items-center gap-3">
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-purple-600 via-pink-600 to-amber-500 hover:opacity-95 text-white font-bold text-sm shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer touch-manipulation"

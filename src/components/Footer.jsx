@@ -90,7 +90,7 @@ export default function Footer() {
 
             <div className="pt-2 flex items-center gap-3">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl bg-slate-800 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 text-white flex items-center justify-center transition-all shadow"
