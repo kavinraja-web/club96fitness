@@ -57,19 +57,19 @@ export default function PlansSection() {
     },
     {
       name: '1 Year VIP Plan',
-      price: '₹6,999',
-      duration: '/ 12 Months',
+      price: '₹7,999',
+      duration: '/ 12 + 3 Months Free!',
       popular: false,
-      savings: 'Save ₹4,989 (Best Value)',
-      desc: 'Unbeatable annual rate for year-round fitness & athletic lifestyle.',
+      savings: '🎁 +3 Months FREE (Best Value)',
+      desc: 'Unbeatable annual rate for year-round fitness — pay for 12 months, get 15 months total access!',
       features: [
+        '🔥 +3 MONTHS EXTRA FREE (15 Months Total)',
         'Everything in 6 Months Plan',
         'VIP Year-Round Access',
         'Competition Prep Guidelines',
         'Direct WhatsApp Support with Head Trainer',
-        'Unlimited Guest Passes (2/month)',
       ],
-      ctaText: 'Join For 1 Year VIP',
+      ctaText: 'Claim 1 Year + 3 Months Free',
     },
   ];
 
@@ -152,16 +152,19 @@ export default function PlansSection() {
                   <div className={`text-xs font-bold uppercase tracking-wider ${plan.popular ? 'text-amber-400' : 'text-slate-400'}`}>
                     Included Benefits:
                   </div>
-                  {plan.features.map((feat, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                      <div className={`mt-0.5 rounded-full p-0.5 flex-shrink-0 ${plan.popular ? 'bg-amber-400 text-slate-950' : 'bg-red-100 text-red-600'}`}>
-                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  {plan.features.map((feat, i) => {
+                    const isFreeOffer = feat.includes('FREE');
+                    return (
+                      <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm">
+                        <div className={`mt-0.5 rounded-full p-0.5 flex-shrink-0 ${isFreeOffer ? 'bg-emerald-500 text-white animate-pulse' : plan.popular ? 'bg-amber-400 text-slate-950' : 'bg-red-100 text-red-600'}`}>
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                        </div>
+                        <span className={`${isFreeOffer ? 'text-red-600 font-extrabold bg-red-50 px-2 py-0.5 rounded-md border border-red-200 shadow-sm' : plan.popular ? 'text-slate-200 font-medium' : 'text-slate-700 font-medium'}`}>
+                          {feat}
+                        </span>
                       </div>
-                      <span className={plan.popular ? 'text-slate-200 font-medium' : 'text-slate-700 font-medium'}>
-                        {feat}
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
