@@ -10,6 +10,36 @@
 
 export const galleryData = [
   {
+    id: 10,
+    title: "Championship Lineup & Bodybuilding Excellence",
+    type: "photo",
+    category: "Photos",
+    src: "/assets/newclub96.jpeg",
+    thumbnail: "/assets/newclub96.jpeg",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
+    description: "Witness the dedication and peak physical forms of Kovilpatti's finest fitness champions at Club 96."
+  },
+  {
+    id: 11,
+    title: "Advanced Functional & Strength Suite",
+    type: "photo",
+    category: "Photos",
+    src: "/assets/newclub961.jpeg",
+    thumbnail: "/assets/newclub961.jpeg",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
+    description: "Next-generation strength machines designed for maximum muscle engagement and biomechanical efficiency."
+  },
+  {
+    id: 12,
+    title: "Elite Training Atmosphere & Workout Zone",
+    type: "photo",
+    category: "Photos",
+    src: "/assets/newclub962.jpeg",
+    thumbnail: "/assets/newclub962.jpeg",
+    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
+    description: "High-energy training space equipped with superior cardio and functional conditioning gear."
+  },
+  {
     id: 1,
     title: "Elite Heavy Weight Training & Hardcore Cardio",
     type: "video",
@@ -31,16 +61,7 @@ export const galleryData = [
     instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
     description: "Mr. Tamil Nadu competition lineup and trophy winning moment."
   },
-  {
-    id: 3,
-    title: "Luxury Gym Floor & Cardio Suite",
-    type: "photo",
-    category: "Photos",
-    src: "/assets/club962.jpeg",
-    thumbnail: "/assets/club962.jpeg",
-    instagramUrl: "https://www.instagram.com/club96_fitness?igsh=ZDB0M2F2NTNnbjY4",
-    description: "State-of-the-art imported fitness machines and dedicated functional area."
-  },
+
   {
     id: 4,
     title: "90-Day Fat Loss & Muscle Gain Transformation",

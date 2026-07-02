@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Image, Video, X, ChevronLeft, ChevronRight, Sparkles, Filter } from 'lucide-react';
-import { galleryData, galleryCategories } from '../data/galleryData';
+import { Play, X, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react';
+import { galleryData } from '../data/galleryData';
 
 const InstagramIcon = ({ className = "w-4 h-4" }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -12,43 +12,24 @@ const InstagramIcon = ({ className = "w-4 h-4" }) => (
 );
 
 export default function GallerySection() {
-  const [items] = useState(galleryData);
-  const [activeCategory, setActiveCategory] = useState('All');
+  const items = galleryData;
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  // Filter items based on active category
-  const filteredItems = activeCategory === 'All'
-    ? items
-    : activeCategory === 'Videos'
-    ? items.filter(item => item.type === 'video' || item.category === 'Videos')
-    : items.filter(item => item.type === 'photo' || item.category === 'Photos');
-
-  // Handle category filter switch with brief skeleton simulation for premium UX
-  const handleCategoryChange = (cat) => {
-    if (cat === activeCategory) return;
-    setIsLoading(true);
-    setActiveCategory(cat);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 350);
-  };
 
   // Handle next/prev in lightbox
   const handleNext = (e) => {
     e?.stopPropagation();
     if (!selectedItem) return;
-    const currentIndex = filteredItems.findIndex(i => i.id === selectedItem.id);
-    const nextIndex = (currentIndex + 1) % filteredItems.length;
-    setSelectedItem(filteredItems[nextIndex]);
+    const currentIndex = items.findIndex(i => i.id === selectedItem.id);
+    const nextIndex = (currentIndex + 1) % items.length;
+    setSelectedItem(items[nextIndex]);
   };
 
   const handlePrev = (e) => {
     e?.stopPropagation();
     if (!selectedItem) return;
-    const currentIndex = filteredItems.findIndex(i => i.id === selectedItem.id);
-    const prevIndex = (currentIndex - 1 + filteredItems.length) % filteredItems.length;
-    setSelectedItem(filteredItems[prevIndex]);
+    const currentIndex = items.findIndex(i => i.id === selectedItem.id);
+    const prevIndex = (currentIndex - 1 + items.length) % items.length;
+    setSelectedItem(items[prevIndex]);
   };
 
   // Handle keyboard navigation for Lightbox
@@ -61,7 +42,7 @@ export default function GallerySection() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedItem, filteredItems]);
+  }, [selectedItem, items]);
 
   return (
     <section id="gallery" className="py-24 bg-gradient-to-br from-slate-900 via-red-950 to-slate-900 text-white relative overflow-hidden">
@@ -100,43 +81,10 @@ export default function GallerySection() {
           </div>
         </div>
 
-        {/* Category Filters */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-10 no-scrollbar border-b border-white/10">
-          <Filter className="w-4 h-4 text-amber-400 flex-shrink-0 mr-1" />
-          {galleryCategories.map((cat) => (
-            <button
-              key={cat}
-              type="button"
-              onClick={() => handleCategoryChange(cat)}
-              className={`px-5 py-2.5 rounded-xl font-bold text-sm whitespace-nowrap transition-all duration-300 cursor-pointer touch-manipulation ${
-                activeCategory === cat
-                  ? 'bg-gradient-to-r from-red-600 to-red-700 text-white shadow-lg shadow-red-600/30 ring-2 ring-red-400/30'
-                  : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white border border-white/5'
-              }`}
-            >
-              {cat}
-              <span className="ml-2 text-xs opacity-75 px-1.5 py-0.5 rounded-full bg-black/20">
-                {cat === 'All'
-                  ? items.length
-                  : cat === 'Videos'
-                  ? items.filter(i => i.type === 'video' || i.category === 'Videos').length
-                  : items.filter(i => i.type === 'photo' || i.category === 'Photos').length}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Masonry Grid / Loading Skeleton */}
-        {isLoading ? (
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            {[1, 2, 3, 4, 5, 6].map((skel) => (
-              <div key={skel} className="bg-white/5 border border-white/10 rounded-2xl h-64 sm:h-80 animate-pulse break-inside-avoid" />
-            ))}
-          </div>
-        ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
-            <AnimatePresence>
-              {filteredItems.map((item) => (
+        {/* Masonry Grid */}
+        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 mt-8">
+          <AnimatePresence>
+            {items.map((item) => (
                 <motion.div
                   key={item.id}
                   layout
@@ -170,55 +118,31 @@ export default function GallerySection() {
                       </div>
                     )}
 
-                    {/* Category & Type Badge */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
-                      <span className="bg-slate-900/80 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-amber-400 shadow">
-                        {item.category}
-                      </span>
-                      {item.type === 'video' ? (
-                        <span className="bg-red-600/90 text-white px-2 py-0.5 rounded-md text-[10px] font-bold uppercase flex items-center gap-1 shadow">
-                          <Video className="w-3 h-3" /> Video
-                        </span>
-                      ) : (
-                        <span className="bg-black/60 text-slate-200 px-2 py-0.5 rounded-md text-[10px] font-bold uppercase flex items-center gap-1">
-                          <Image className="w-3 h-3" /> Photo
-                        </span>
-                      )}
-                    </div>
+
                   </div>
 
                   {/* Hover Glass Banner */}
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent p-5 pt-10 translate-y-2 group-hover:translate-y-0 transition-transform">
-                    <h3 className="font-extrabold text-lg text-white font-['Outfit'] leading-snug line-clamp-1">
-                      {item.title}
-                    </h3>
-                    <p className="text-slate-300 text-xs mt-1 line-clamp-2">
-                      {item.description}
-                    </p>
-
-                    <div className="flex items-center justify-between mt-3 pt-3 border-t border-white/10">
-                      <span className="text-[11px] font-semibold text-amber-400 group-hover:underline flex items-center gap-1">
-                        View Fullbox →
-                      </span>
-                      {item.instagramUrl && (
-                        <a
-                          href={item.instagramUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          className="text-xs font-bold text-pink-400 hover:text-pink-300 flex items-center gap-1 bg-white/10 px-2 py-1 rounded-md hover:bg-white/20 transition-colors"
-                        >
-                          <InstagramIcon className="w-3.5 h-3.5" />
-                          <span>Instagram</span>
-                        </a>
-                      )}
-                    </div>
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-between">
+                    <span className="text-xs font-semibold text-amber-400 flex items-center gap-1">
+                      View Fullbox →
+                    </span>
+                    {item.instagramUrl && (
+                      <a
+                        href={item.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="text-xs font-bold text-pink-400 hover:text-pink-300 flex items-center gap-1 bg-white/10 px-2.5 py-1 rounded-md hover:bg-white/20 transition-colors"
+                      >
+                        <InstagramIcon className="w-3.5 h-3.5" />
+                        <span>Instagram</span>
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
-        )}
 
         {/* Lightbox Modal */}
         <AnimatePresence>
@@ -286,23 +210,12 @@ export default function GallerySection() {
                 </div>
 
                 {/* Lightbox Footer Info */}
-                <div className="w-full p-6 bg-slate-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-white/10">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="bg-amber-500/20 text-amber-400 px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider border border-amber-500/30">
-                        {selectedItem.category}
-                      </span>
-                      <span className="text-slate-400 text-xs"> Club 96 Official Media</span>
-                    </div>
-                    <h3 className="text-xl sm:text-2xl font-black text-white font-['Outfit']">
-                      {selectedItem.title}
-                    </h3>
-                    <p className="text-slate-300 text-sm mt-1 max-w-2xl">
-                      {selectedItem.description}
-                    </p>
+                <div className="w-full p-6 bg-slate-900 flex items-center justify-between gap-4 border-t border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="text-amber-400 font-bold uppercase tracking-wider text-xs">Club 96 Official Media</span>
                   </div>
 
-                  <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
+                  <div className="flex items-center gap-3">
                     {selectedItem.instagramUrl && (
                       <a
                         href={selectedItem.instagramUrl}

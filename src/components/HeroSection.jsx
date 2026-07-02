@@ -7,6 +7,24 @@ export default function HeroSection() {
 
   const heroSlides = [
     {
+      image: '/assets/newclub96.jpeg',
+      tag: 'Championship Lineup',
+      title: 'Bodybuilding Excellence & Champions',
+      desc: 'Peak physical conditioning at Club 96'
+    },
+    {
+      image: '/assets/newclub961.jpeg',
+      tag: 'Pro Equipment Suite',
+      title: 'Advanced Functional & Strength Arena',
+      desc: 'Next-generation strength training gear'
+    },
+    {
+      image: '/assets/newclub962.jpeg',
+      tag: 'Elite Conditioning',
+      title: 'Award Winning GYM',
+      desc: 'Best GYM In Kovilpatti'
+    },
+    {
       image: '/assets/club96img.jpeg',
       tag: 'Club 96 Arena',
       title: 'Pro Gym Equipment & Ambience',

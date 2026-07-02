@@ -8,7 +8,6 @@ import ServicesSection from './components/ServicesSection';
 import PlansSection from './components/PlansSection';
 import GallerySection from './components/GallerySection';
 import BmiCalculator from './components/BmiCalculator';
-import TransformationSection from './components/TransformationSection';
 import TestimonialsSection from './components/TestimonialsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
@@ -27,7 +26,6 @@ export default function App() {
         <PlansSection />
         <GallerySection />
         <BmiCalculator />
-        <TransformationSection />
         <TestimonialsSection />
         <ContactSection />
       </main>

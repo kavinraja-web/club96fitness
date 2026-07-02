@@ -9,6 +9,7 @@ export default function AnimatedPhotoToggle() {
   const categories = ['All', 'Strength Arena', 'Pro Equipment', 'Cardio & Conditioning'];
 
   const photos = [
+
     {
       id: 1,
       title: 'Heavy Duty Dumbbell Rack & Free Weights',
